@@ -1,3 +1,6 @@
+import express from 'express';
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 import { generateCreativeContent } from './tweet.js';
 import { TwitterApi } from 'twitter-api-v2';
@@ -36,14 +39,16 @@ async function postRandomTweet() {
   }
 }
 
+
 // Run every 6 hours
-cron.schedule('0 */6 * * *', () => {
-  postRandomTweet();
-});
+// cron.schedule('0 */6 * * *', () => {
+//   console.log("Scheduled tweet attempt at:", new Date().toLocaleString());
+//   postRandomTweet();
+// });
+
+postRandomTweet();
 
 
-const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('Twitter bot is running...');
