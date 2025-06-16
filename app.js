@@ -41,3 +41,14 @@ cron.schedule('0 */6 * * *', () => {
   postRandomTweet();
 });
 
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Twitter bot is running...');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
